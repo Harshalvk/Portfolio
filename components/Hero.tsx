@@ -3,7 +3,7 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { ModeToggle } from "./ModeToggle";
-import {  ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -19,7 +19,7 @@ const Hero = () => {
         </div>
         <ModeToggle />
       </div>
-      <p className="mt-7 md:text-xl text-zinc-600  dark:text-zinc-400 text-justify font-medium">
+      <p className="mt-7 text-zinc-600 font-mono  dark:text-zinc-400 text-justify font-medium">
         I create quick, scalable, and user-friendly web applications with a mix
         of tidy code and well-considered design.
       </p>
