@@ -7,14 +7,21 @@ import TechBadge from "./TechBadge";
 import { Button } from "./ui/button";
 import { ArrowRight, Link as LinkLogo } from "lucide-react";
 import Link from "next/link";
+import { LinkPreview } from "./ui/link-preview";
 
 const Projects = () => {
   return (
     <section>
       <Title text="Recent Projects." />
-      <p className="md:text-xl dark:text-zinc-400">
-        Explore some of my recent projects below. For more, visit my GitHub
-        profile.
+      <p className="dark:text-zinc-400 font-mono">
+        Explore some of my recent projects below. For more, visit my{" "}
+        <LinkPreview
+          url="https://github.com/Harshalvk/"
+          className="hover:underline transition-all underline-offset-4"
+        >
+          GitHub Profile
+        </LinkPreview>
+        .
       </p>
       {projects.map((project) => (
         <ProjectBlock
@@ -35,7 +42,7 @@ function ProjectBlock({
   description,
   imageSrc,
   techBadge,
-  link
+  link,
 }: {
   title: string;
   description: string;
@@ -44,13 +51,17 @@ function ProjectBlock({
     name: string;
     item: React.ReactNode;
   }[];
-  link: string
+  link: string;
 }) {
   return (
     <>
       <div className="my-5">
-        <h1 className="font-semibold tracking-tighter text-xl">{title}</h1>
-        <p className="my-3 dark:text-zinc-400 md:text-lg">{description}</p>
+        <h1 className="font-semibold tracking-tighter text-xl md:text-2xl lg:text-3xl">
+          {title}
+        </h1>
+        <p className="my-3 font-mono dark:text-zinc-400 text-[14px] sm:text-[16px]">
+          {description}
+        </p>
         <AspectRatio ratio={16 / 9}>
           <Image
             src={`${imageSrc}`}
@@ -61,8 +72,8 @@ function ProjectBlock({
         </AspectRatio>
       </div>
       <div className="flex items-center gap-1 flex-wrap">
-        {techBadge.map((badge) => (
-          <TechBadge name={badge.name} Logo={badge.item} />
+        {techBadge.map((badge, index) => (
+          <TechBadge key={index} name={badge.name} Logo={badge.item} />
         ))}
       </div>
       <Button variant={"link"} className="mt-3 group">
