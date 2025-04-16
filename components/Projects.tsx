@@ -2,8 +2,11 @@ import React from "react";
 import Title from "./Title";
 import Image from "next/image";
 import { AspectRatio } from "./ui/aspect-ratio";
+import { projects } from "@/components/constants";
 import TechBadge from "./TechBadge";
-import { projects } from "@/lib/constants";
+import { Button } from "./ui/button";
+import { ArrowRight, Link as LinkLogo } from "lucide-react";
+import Link from "next/link";
 
 const Projects = () => {
   return (
@@ -20,6 +23,7 @@ const Projects = () => {
           description={project.description}
           imageSrc={project.imageSrc}
           techBadge={project.techBadge}
+          link={project.link}
         />
       ))}
     </section>
@@ -31,15 +35,16 @@ function ProjectBlock({
   description,
   imageSrc,
   techBadge,
+  link
 }: {
   title: string;
   description: string;
   imageSrc: string;
   techBadge: {
-    logo: string;
-    alt: string;
     name: string;
+    item: React.ReactNode;
   }[];
+  link: string
 }) {
   return (
     <>
@@ -55,16 +60,17 @@ function ProjectBlock({
           />
         </AspectRatio>
       </div>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 flex-wrap">
         {techBadge.map((badge) => (
-          <TechBadge
-            key={badge.name}
-            imageSrc={badge.logo}
-            alt={badge.logo}
-            name={badge.name}
-          />
+          <TechBadge name={badge.name} Logo={badge.item} />
         ))}
       </div>
+      <Button variant={"link"} className="mt-3 group">
+        <Link href={link} target="_blank" className="flex gap-1 items-center">
+          <LinkLogo /> Visit Website
+          <ArrowRight className="-translate-x-0.5 group-hover:translate-x-0.5 transition-all" />
+        </Link>
+      </Button>
     </>
   );
 }
