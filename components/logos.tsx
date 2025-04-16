@@ -928,21 +928,21 @@ const T3Stack = (props: SVGProps<SVGSVGElement>) => (
       fillRule="evenodd"
       clipRule="evenodd"
       d="M165.735 25.0701L188.947 0.972412H0.465994V25.0701H165.735Z"
-      fill="#e2e8f0"
+      fill="currentColor"
     />
     <path
       d="M163.981 96.3239L254.022 3.68314L221.206 3.68295L145.617 80.7609L163.981 96.3239Z"
-      fill="#e2e8f0"
+      fill="currentColor"
     />
     <path
       d="M233.658 131.418C233.658 155.075 214.48 174.254 190.823 174.254C171.715 174.254 155.513 161.738 150 144.439L146.625 133.848L127.329 153.143L129.092 157.336C139.215 181.421 163.034 198.354 190.823 198.354C227.791 198.354 257.759 168.386 257.759 131.418C257.759 106.937 244.399 85.7396 224.956 74.0905L220.395 71.3582L202.727 89.2528L210.788 93.5083C224.403 100.696 233.658 114.981 233.658 131.418Z"
-      fill="#e2e8f0"
+      fill="currentColor"
     />
     <path
       fillRule="evenodd"
       clipRule="evenodd"
       d="M88.2625 192.669L88.2626 45.6459H64.1648L64.1648 192.669H88.2625Z"
-      fill="#e2e8f0"
+      fill="currentColor"
     />
   </svg>
 );
@@ -1043,13 +1043,13 @@ const Socketio = (props: SVGProps<SVGSVGElement>) => (
       cx={128}
       cy={128}
       r={114}
-      stroke="#FFF"
+      stroke="currentColor"
       strokeWidth={20}
       fill="none"
     />
     <path
       d="M97.637 121.69c27.327-22.326 54.058-45.426 81.98-67.097-14.646 22.505-29.708 44.711-44.354 67.215-12.562.06-25.123.06-37.626-.119zM120.737 134.132c12.621 0 25.183 0 37.745.179-27.505 22.206-54.117 45.484-82.099 67.096 14.646-22.505 29.708-44.77 44.354-67.275z"
-      fill="#FFF"
+      fill="currentColor"
     />
   </svg>
 );
@@ -1250,7 +1250,7 @@ const shadcnui = (props: SVGProps<SVGSVGElement>) => (
     <path fill="none" d="M0 0h256v256H0z" />
     <path
       fill="none"
-      stroke="#fff"
+      stroke="currentColor"
       strokeWidth={25}
       strokeLinecap="round"
       d="M208 128l-80 80M192 40L40 192"
