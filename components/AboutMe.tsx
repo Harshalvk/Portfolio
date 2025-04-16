@@ -9,7 +9,7 @@ const AboutMe = () => {
   return (
     <section>
       <Title text="About Me." />
-      <p className="flex flex-col gap-2 md:text-lg dark:text-zinc-400">
+      <p className="flex flex-col gap-2 md:text-lg dark:text-muted-foreground font-mono">
         <span>
           I&apos;ve been coding for the past 3 years, mainly focusing on web
           development and building scalable backend systems.
