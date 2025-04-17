@@ -41,6 +41,7 @@ import {
   Linux,
   Hono,
   Kubernetes,
+  TypeScript
 } from "@/components/logos";
 
 export const projects = [
@@ -99,7 +100,7 @@ export const myTechLogos: myTechLogosType[] = [
   },
   {
     name: "BetterAuth",
-    item: <BetterAuth className="h-5 w-5" />,
+    item: <BetterAuth className="h-5 w-5 rounded" />,
   },
   {
     name: "JWT",
@@ -183,7 +184,11 @@ export const myTechLogos: myTechLogosType[] = [
   },
   {
     name: "JavaScript",
-    item: <JavaScript className="h-5 w-5" />,
+    item: <JavaScript className="h-5 w-5 rounded" />,
+  },
+  {
+    name: "TypeScript",
+    item: <TypeScript className="h-5 w-5 rounded" />,
   },
   {
     name: "Rust",
