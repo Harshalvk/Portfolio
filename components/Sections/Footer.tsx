@@ -1,11 +1,15 @@
 import React from "react";
+import { ModeToggle } from "../ModeToggle";
 
 const Footer = () => {
   return (
     <section className="font-mono">
-      <p className="text-muted-foreground text-sm font-mono">
-        Copyright &#169; 2021 - 2025 Harshal Khobragade
-      </p>
+      <div className="w-full flex justify-between items-center">
+        <p className="text-muted-foreground text-sm font-mono">
+          Copyright &#169; 2021 - 2025 Harshal Khobragade
+        </p>
+        <ModeToggle />
+      </div>
       <div className="w-full flex justify-between mt-4">
         <div className="flex flex-col">
           <h2 className="text-[18px]">Important Links</h2>
