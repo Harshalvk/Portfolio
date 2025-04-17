@@ -24,7 +24,7 @@ const AboutMe = () => {
           improve while staying current with tech trends.
         </span>
       </p>
-      <div className="my-5 flex items-center gap-5">
+      <div className="my-5 flex items-center gap-5 flex-wrap">
         <Button
           variant={"secondary"}
           className="flex items-center justify-center group"

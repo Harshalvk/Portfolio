@@ -36,7 +36,7 @@ const ContactMe = () => {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (values: z.infer<typeof formSchema>) => {};
 
   return (
     <section className="my-5">
@@ -98,7 +98,7 @@ const ContactMe = () => {
                     <AutosizeTextarea
                       placeholder="Hello there, I would like to ask you about..."
                       {...field}
-                      className="resize-none text-sm"
+                      className="min-h-36 resize-none text-sm"
                     />
                   </FormControl>
                   <FormMessage />
