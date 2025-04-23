@@ -1,7 +1,19 @@
+"use client";
+
 import React from "react";
 import TechBadge from "../TechBadge";
-import { myTechLogos } from "@/components/constants";
+import {
+  myTechLogos,
+  testAni,
+  frameworksAndLibraries,
+  backendAndDatabases,
+  devopsAndCloud,
+  programmingLanguagesAndOthers,
+} from "@/components/constants";
 import Title from "../Title";
+import { motion } from "motion/react";
+import { Separator } from "../ui/separator";
+import MotionBadge from "../MotionBadge";
 
 const MyTechnologies = () => {
   return (
@@ -11,12 +23,11 @@ const MyTechnologies = () => {
         Over the years, I have worked with a variety of technologies. Here are
         some of the technologies I have experience with:
       </p>
-      <div className="flex flex-wrap gap-2 my-4">
-        {myTechLogos.map((logo, index) => (
-          <TechBadge key={index} Logo={logo.item} name={logo.name} />
-        ))}
-      </div>
-      <p className="text-center font-mono text-muted-foreground">
+      <MotionBadge badges={frameworksAndLibraries} />
+      <MotionBadge badges={backendAndDatabases} reverse={true} />
+      <MotionBadge badges={devopsAndCloud} />
+      <MotionBadge badges={programmingLanguagesAndOthers} reverse={true} />
+      <p className="text-center font-mono text-muted-foreground mt-1">
         ...and many more!
       </p>
     </section>
