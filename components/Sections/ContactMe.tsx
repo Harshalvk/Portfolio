@@ -36,7 +36,9 @@ const ContactMe = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {};
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+  };
 
   return (
     <section className="my-5">
@@ -105,7 +107,7 @@ const ContactMe = () => {
                 </FormItem>
               )}
             />
-            <Button variant={"secondary"} className="border">
+            <Button variant={"secondary"} className="border w-full sm:w-fit">
               <Send />
               Send
             </Button>
@@ -127,7 +129,7 @@ function OtherContacts() {
     <>
       <Button variant={"outline"} className="group text-md">
         <Link
-          href={"https://github.com/harshalvk/"}
+          href={"mailto:harshalvkhobragade@gmail.com"}
           target="_blank"
           className="flex items-center gap-1"
         >
@@ -141,7 +143,7 @@ function OtherContacts() {
       </Button>
       <Button variant={"outline"} className="group text-md">
         <Link
-          href={"https://github.com/harshalvk/"}
+          href={"https://discord.com/users/harsshal."}
           target="_blank"
           className="flex items-center gap-1"
         >
@@ -155,7 +157,7 @@ function OtherContacts() {
       </Button>
       <Button variant={"outline"} className="group text-md">
         <Link
-          href={"https://github.com/harshalvk/"}
+          href={"https://x.com/Harshalvk_"}
           target="_blank"
           className="flex items-center gap-1"
         >
@@ -169,7 +171,7 @@ function OtherContacts() {
       </Button>
       <Button variant={"outline"} className="group text-md">
         <Link
-          href={"https://github.com/harshalvk/"}
+          href={"https://www.linkedin.com/in/harshalvk/"}
           target="_blank"
           className="flex items-center gap-1"
         >
