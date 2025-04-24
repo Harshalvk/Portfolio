@@ -70,7 +70,7 @@ function ProjectBlock({
             src={`${imageSrc}`}
             alt={`${imageSrc.split("/")[1]}`}
             fill
-            className="w-full h-full border rounded-xl"
+            className="w-full h-full border rounded-md"
           />
         </AspectRatio>
       </div>

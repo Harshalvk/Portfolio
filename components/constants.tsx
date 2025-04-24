@@ -76,10 +76,10 @@ export const projects = [
     code: "https://github.com/Harshalvk/CodePost",
   },
   {
-    title: "CodePost",
+    title: "Remindo",
     description:
-      "A minimal, distraction-free platform for sharing ideas, stories, and thoughts built for clarity, speed, and effortless publishing.",
-    imageSrc: "/codepost.png",
+      "It appears to be a minimalistic application designed to help users manage tasks and reminders efficiently.",
+    imageSrc: "/remindo.png",
     techBadge: [
       {
         name: "NextJS",
@@ -101,9 +101,13 @@ export const projects = [
         name: "PostgreSQL",
         item: <PostgreSQL className="h-5 w-5" />,
       },
+      {
+        name: "TypeScript",
+        item: <TypeScript className="h-5 w-5" />,
+      },
     ],
-    link: "https://codepost.vercel.app/",
-    code: "https://github.com/Harshalvk/CodePost",
+    link: "https://remindo-three.vercel.app/",
+    code: "https://github.com/Harshalvk/Remindo",
   },
 ];
 
