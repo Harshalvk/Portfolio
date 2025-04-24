@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { ArrowRight, Link as LinkLogo } from "lucide-react";
 import Link from "next/link";
 import { LinkPreview } from "./ui/link-preview";
+import { GitHub } from "./logos";
 
 const Projects = () => {
   return (
@@ -23,16 +24,18 @@ const Projects = () => {
         </LinkPreview>
         .
       </p>
-      {projects.map((project) => (
-        <ProjectBlock
-          key={project.title}
-          title={project.title}
-          description={project.description}
-          imageSrc={project.imageSrc}
-          techBadge={project.techBadge}
-          link={project.link}
-        />
-      ))}
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 mt-2">
+        {projects.map((project) => (
+          <ProjectBlock
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            imageSrc={project.imageSrc}
+            techBadge={project.techBadge}
+            link={project.link}
+          />
+        ))}
+      </div>
     </section>
   );
 };
@@ -54,8 +57,8 @@ function ProjectBlock({
   link: string;
 }) {
   return (
-    <>
-      <div className="my-5">
+    <div className="border p-4 rounded-xl">
+      <div>
         <h1 className="font-semibold tracking-tighter text-xl md:text-2xl lg:text-3xl">
           {title}
         </h1>
@@ -71,9 +74,14 @@ function ProjectBlock({
           />
         </AspectRatio>
       </div>
-      <div className="flex items-center gap-1 flex-wrap">
+      <div className="flex items-center gap-1 flex-wrap mt-3">
         {techBadge.map((badge, index) => (
-          <TechBadge key={index} name={badge.name} Logo={badge.item} />
+          <TechBadge
+            key={index}
+            name={badge.name}
+            Logo={badge.item}
+            className="text-xs "
+          />
         ))}
       </div>
       <Button variant={"link"} className="mt-3 group">
@@ -82,7 +90,13 @@ function ProjectBlock({
           <ArrowRight className="-translate-x-0.5 group-hover:translate-x-0.5 transition-all" />
         </Link>
       </Button>
-    </>
+      <Button variant={"outline"} className="mt-3 group">
+        <Link href={link} target="_blank" className="flex gap-1 items-center">
+          <GitHub className="h-5 w-5" /> Code
+          <ArrowRight className="-translate-x-0.5 group-hover:translate-x-0.5 transition-all" />
+        </Link>
+      </Button>
+    </div>
   );
 }
 
