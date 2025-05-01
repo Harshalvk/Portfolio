@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../Title";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -15,10 +15,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, AtSign, Send } from "lucide-react";
+import { ArrowRight, AtSign, Loader, Loader2, Send } from "lucide-react";
 import { AutosizeTextarea } from "../ui/auto-resize-textarea";
 import { Discord, LinkedIn, X } from "../logos";
 import Link from "next/link";
+import { useMutation } from "@tanstack/react-query";
+import { SendMail } from "@/actions/sendMail";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string(),
@@ -27,6 +30,8 @@ const formSchema = z.object({
 });
 
 const ContactMe = () => {
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,8 +41,30 @@ const ContactMe = () => {
     },
   });
 
+  useEffect(() => {
+    form.reset({
+      email: "",
+      message: "",
+      name: "",
+    });
+  }, [isSubmit]);
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: SendMail,
+    onMutate: () => {
+      toast.loading("Sending...", { id: "send-email" });
+    },
+    onSuccess: () => {
+      setIsSubmit(true);
+      toast.success("Mail sent!", { id: "send-email" });
+    },
+    onError: () => {
+      toast.error("Mail not sent.", { id: "send-email" });
+    },
+  });
+
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    mutate(values);
   };
 
   return (
@@ -107,8 +134,16 @@ const ContactMe = () => {
                 </FormItem>
               )}
             />
-            <Button variant={"secondary"} className="border w-full sm:w-fit">
-              <Send />
+            <Button
+              disabled={isPending}
+              variant={"secondary"}
+              className="border w-full sm:w-fit"
+            >
+              {isPending ? (
+                <Loader className="animate-spin transition-all" />
+              ) : (
+                <Send />
+              )}
               Send
             </Button>
           </form>
