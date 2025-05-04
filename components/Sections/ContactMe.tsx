@@ -56,7 +56,7 @@ const ContactMe = () => {
     },
     onSuccess: () => {
       setIsSubmit(true);
-      toast.success("Mail sent!", { id: "send-email" });
+      toast.success("Thanks for reaching out!", { id: "send-email" });
     },
     onError: () => {
       toast.error("Mail not sent.", { id: "send-email" });
@@ -83,6 +83,7 @@ const ContactMe = () => {
           >
             <div className="flex flex-col sm:flex-row sm:items-center gap-2">
               <FormField
+                disabled={isPending}
                 control={form.control}
                 name="name"
                 render={({ field }) => (
@@ -102,6 +103,7 @@ const ContactMe = () => {
               <FormField
                 control={form.control}
                 name="email"
+                disabled={isPending}
                 render={({ field }) => (
                   <FormItem className="flex-1">
                     <FormLabel>Email</FormLabel>
@@ -120,6 +122,7 @@ const ContactMe = () => {
             <FormField
               control={form.control}
               name="message"
+              disabled={isPending}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Message</FormLabel>
