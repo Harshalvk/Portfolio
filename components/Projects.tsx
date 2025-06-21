@@ -1,5 +1,5 @@
-import React from "react";
-import Title from "./Title";
+import React, { useEffect } from "react";
+import { Title } from "./Title";
 import Image from "next/image";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { projects } from "@/components/constants";
@@ -9,12 +9,49 @@ import { ArrowRight, Link as LinkLogo } from "lucide-react";
 import Link from "next/link";
 import { LinkPreview } from "./ui/link-preview";
 import { GitHub } from "./logos";
+import { stagger, useAnimate, motion } from "motion/react";
 
 const Projects = () => {
+  const [scope, animate] = useAnimate();
+
+  const startAnimating = () => {
+    animate(
+      "#hero",
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+      },
+      {
+        delay: stagger(0.1, { startDelay: 0.2 }),
+        duration: 0.3,
+        ease: "easeInOut",
+      }
+    );
+  };
+
+  useEffect(() => {
+    startAnimating();
+  }, []);
+
+  const animation = {
+    initial: { y: 8, opacity: 0, filter: "blur(10px)" },
+  };
+
   return (
-    <section>
-      <Title text="Recent Projects." />
-      <p className="dark:text-zinc-400 font-mono">
+    <section ref={scope}>
+      <Title
+        id="hero"
+        initial="initial"
+        variants={animation}
+        text="Recent Projects."
+      />
+      <motion.p
+        id="hero"
+        initial="initial"
+        variants={animation}
+        className="dark:text-zinc-400 font-mono"
+      >
         Explore some of my recent projects below. For more, visit my{" "}
         <LinkPreview
           url="https://github.com/Harshalvk/"
@@ -23,8 +60,13 @@ const Projects = () => {
           GitHub Profile
         </LinkPreview>
         .
-      </p>
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 mt-2">
+      </motion.p>
+      <motion.div
+        id="hero"
+        initial="initial"
+        variants={animation}
+        className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-4 mt-2"
+      >
         {projects.map((project) => (
           <ProjectBlock
             key={project.title}
@@ -35,7 +77,7 @@ const Projects = () => {
             link={project.link}
           />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
@@ -62,7 +104,7 @@ function ProjectBlock({
         <h1 className="font-semibold tracking-tighter text-xl md:text-2xl lg:text-3xl">
           {title}
         </h1>
-        <p className="my-3 font-mono dark:text-zinc-400 text-[14px] sm:text-[16px]">
+        <p className="my-3 font-mono dark:text-zinc-400 text-[14px]">
           {description}
         </p>
         <AspectRatio ratio={16 / 9}>

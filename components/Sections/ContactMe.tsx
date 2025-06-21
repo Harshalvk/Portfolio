@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Title from "../Title";
+import { Title } from "../Title";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,6 +22,8 @@ import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import { SendMail } from "@/actions/sendMail";
 import { toast } from "sonner";
+import { stagger, useAnimate, motion, useInView } from "motion/react";
+import { Separator } from "../ui/separator";
 
 const formSchema = z.object({
   name: z.string(),
@@ -67,15 +69,59 @@ const ContactMe = () => {
     mutate(values);
   };
 
+  const [scope, animate] = useAnimate();
+  const isInView = useInView(scope);
+
+  const startAnimating = () => {
+    animate(
+      scope.current,
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+      },
+      {
+        delay: stagger(0.1, { startDelay: 0.2 }),
+        duration: 0.3,
+        ease: "easeInOut",
+      }
+    );
+  };
+
+  useEffect(() => {
+    if (isInView) {
+      startAnimating();
+    }
+  }, [isInView]);
+
+  const animation = {
+    initial: { y: 8, opacity: 0, filter: "blur(10px)" },
+  };
+
   return (
-    <section className="my-5">
-      <Title text="Contact Me." />
-      <p className="font-mono text-muted-foreground mb-5 leading-5">
+    <section ref={scope} className="my-5">
+      <Title
+        id="hero"
+        initial="initial"
+        variants={animation}
+        text="Contact Me."
+      />
+      <motion.p
+        id="hero"
+        initial="initial"
+        variants={animation}
+        className="font-mono text-muted-foreground mb-5 leading-5"
+      >
         I&apos;m always eager to explore new opportunities and take an exciting
         projects. If you have a project in mind, or just want to say hi, feel
         free to send me a message.
-      </p>
-      <div className="border p-4 rounded-md">
+      </motion.p>
+      <motion.div
+        id="hero"
+        initial="initial"
+        variants={animation}
+        className="border p-4 rounded-md"
+      >
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -151,13 +197,24 @@ const ContactMe = () => {
             </Button>
           </form>
         </Form>
-      </div>
-      <p className="text-muted-foreground font-mono my-5">
+      </motion.div>
+      <motion.p
+        id="hero"
+        initial="initial"
+        variants={animation}
+        className="text-muted-foreground font-mono my-5"
+      >
         Or contact me with...
-      </p>
-      <div className="flex gap-2 flex-wrap">
+      </motion.p>
+      <motion.div
+        id="hero"
+        initial="initial"
+        variants={animation}
+        className="flex gap-2 flex-wrap"
+      >
         <OtherContacts />
-      </div>
+        <Separator className="my-5" />
+      </motion.div>
     </section>
   );
 };
@@ -165,7 +222,7 @@ const ContactMe = () => {
 function OtherContacts() {
   return (
     <>
-      <Button variant={"outline"} className="group text-md">
+      <Button asChild variant={"outline"} className="group text-md">
         <Link
           href={"mailto:harshalvkhobragade@gmail.com"}
           target="_blank"
@@ -179,7 +236,7 @@ function OtherContacts() {
           />
         </Link>
       </Button>
-      <Button variant={"outline"} className="group text-md">
+      <Button asChild variant={"outline"} className="group text-md">
         <Link
           href={"https://discord.com/users/harsshal."}
           target="_blank"
@@ -193,7 +250,7 @@ function OtherContacts() {
           />
         </Link>
       </Button>
-      <Button variant={"outline"} className="group text-md">
+      <Button asChild variant={"outline"} className="group text-md">
         <Link
           href={"https://x.com/Harshalvk_"}
           target="_blank"
@@ -207,7 +264,7 @@ function OtherContacts() {
           />
         </Link>
       </Button>
-      <Button variant={"outline"} className="group text-md">
+      <Button asChild variant={"outline"} className="group text-md">
         <Link
           href={"https://www.linkedin.com/in/harshalvk/"}
           target="_blank"
